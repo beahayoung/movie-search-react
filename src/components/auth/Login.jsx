@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBolt, faCircleXmark, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
@@ -81,7 +81,7 @@ const Login = () => {
                             <input id='password' type={`${ishide ? "text":"password"}`} className='intext' value={password} onFocus={handlefocus} onBlur={handleBlurCheck} onChange={(e) => setPassword(e.target.value)} required />
                             {password.length > 0 &&
                                 <>
-                                    <button type='button' className='pass_hide_off' onClick={passhideoff}>
+                                    <button type='button' className='pass_hide_off' onClick={passhideoff} onMouseDown={(e) => e.preventDefault()}>
                                         <FontAwesomeIcon icon={faEyeSlash} />
                                     </button>
                                     <button type='button' className='pass_clear_btn' onClick={handleclearInputpass} onMouseDown={(e) => e.preventDefault()}>
