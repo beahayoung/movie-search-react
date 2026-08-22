@@ -5,6 +5,7 @@
   --color-bg: #0e0e12;
   --color-bg-card: #1c1523;
   --color-text-muted: #9a9db0;
+  --background-bg: #1f1f1f;
 }
 * {
   padding: 0;
@@ -179,9 +180,9 @@ body {
   transition: all 0.5s;
   .nav__logo {
     a {
-      color:#fff;
-          display: flex;
-    align-items: center;
+      color: #fff;
+      display: flex;
+      align-items: center;
     }
     img {
       width: 100%;
@@ -194,7 +195,7 @@ body {
     padding: 0px 20px;
     border-radius: 30px;
     cursor: pointer;
-        line-height: 2.4;
+    line-height: 2.4;
   }
 
   .nav__avatar {
@@ -203,55 +204,106 @@ body {
   }
 }
 .login-page {
-  height: calc(100vh - 20vh);
-  position: relative;
-  
+  .vort_logo {
+    display: block;
+    font-size: 3rem;
+    padding: 28px 0 40px;
+    text-align: center;
+    a {
+      color: #fff;
+      font-weight: bold;
+    }
+  }
+
   .login-card {
-    position: absolute;
-    top: 50%;
-    max-width: 380px;
-    width: 100%;
-    min-height: 420px;
-    padding: 2rem;
+    min-height: 460px;
+    padding: 49px;
+    width: 520px;
+    margin: 0 auto;
     border-radius: 12px;
-    background: var(--color-bg-card);
+
     border: 1px solid rgba($color: #fff, $alpha: 0.1);
     box-shadow: 0 2px 16px rgba(0, 0, 0, 0.06);
-    left: 50%;
-    transform: translate(-50%, -50%);
     .login-title {
       color: #fff;
       margin: 0 0 4px;
       font-size: 2rem;
-      
     }
     .login-subtitle {
       font-size: 1rem;
       margin: 0 0 24px;
-      color:#c3c2b7;
+      color: #c3c2b7;
     }
     .login-form {
       .input-group {
-        display: flex;
-        flex-direction: column;
-        gap: 6px;
-        margin-bottom: 16px;
+        margin: 0 4px;
+        padding: 19px 0 3px;
+        position: relative;
+        border-bottom: 1px solid rgba($color: #fff, $alpha: 0.1);
+        &.pass {
+          margin-top: 20px;
+        }
+     
+        &.focus {
+           border-bottom: 1px solid var(--color-primary-dark);
+          }
+          &.has_input {
+          label {
+            font-size: 14px;
+            top: 0px;
+            
+          }
+        }
+        .input_wrap {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          position: relative;
+          
+          .intext {
+            padding: 7px 0 8px;
+            width: 100%;
+            flex: 1 1 auto;
+            outline: none;
+            color: #fff;
+            font-size: 17px;
+            &:focus {
+             outline: none;
+            }
+          }
+          button {
+            width: 36px;
+            height: 36px;
+            z-index: 5;
+            position: relative;
+            cursor: pointer;
+            svg {
+              pointer-events: none;
+              width: 1rem;
+              height: 1rem;
+              path {
+                fill: #fff;
+              }
+            }
+          }
+        }
+        label {
+          color: #cdcdcd;
+           font-size: 17px;
+        pointer-events: none;
+        position: absolute;
+        top: 27px;
+        transition: all .2s cubic-bezier(.4, 0, .2, 1);
+        }
       }
       label {
         color: #fff;
+        font-size: 17px;
+
       }
       input {
-        border-radius: 6px;
-        width: 100%;
-        height: 36px;
         background: transparent;
-        padding: 8px 12px;
-        font-size: 16px;
-        background: var(--color-primary-dark);
-        border: 0.5px solid rgba($color: #fff, $alpha: 0.1);
-        &::placeholder {
-          color: #ffffff4b;
-        }
+        border: unset;
       }
       .login-submit {
         width: 100%;
@@ -271,7 +323,6 @@ body {
   }
 }
 .auth-page {
-  
 }
 .banner__wrap {
   & > .swiper {
@@ -298,11 +349,11 @@ body {
     }
   }
   .menu_wrap_list {
-        padding: 50px 0;
+    padding: 50px 0;
     margin-left: 30px;
     .swiper-button-prev,
     .swiper-button-next {
-     top: 74px;
+      top: 74px;
       opacity: 0;
     }
     &:hover {
@@ -315,14 +366,16 @@ body {
       width: auto;
       padding: 15px 30px;
       filter: brightness(1);
-      background: rgba(255,255,255,0.1);
+      background: rgba(255, 255, 255, 0.1);
       border: 1px solid rgba(255, 255, 255, 0.2);
       border-radius: 100px;
       color: white !important;
       font-size: 1.15rem;
       white-space: nowrap;
       cursor: pointer;
-      transition: background 0.3s, transform 0.3s;
+      transition:
+        background 0.3s,
+        transform 0.3s;
       &:hover {
         transform: translateY(-15px);
       }
@@ -342,7 +395,7 @@ body {
     filter: brightness(0.8);
     &::before {
       content: "";
-       background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 30%, rgba(0, 0, 0, 0) 100%);
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 30%, rgba(0, 0, 0, 0) 100%);
       width: 100%;
       height: 100%;
       position: absolute;
@@ -401,7 +454,7 @@ body {
   margin-top: 1.5rem;
 }
 h2 {
-     padding: 0px 0px 30px 10px;
+  padding: 0px 0px 30px 10px;
 }
 
 .swiper-pagination {

@@ -1,11 +1,14 @@
-import { Outlet } from 'react-router-dom';
+import { Outlet, useLocation } from 'react-router-dom';
 import Nav from './Nav';
 import Footer from './Footer';
 
 const Layout = () => {
+    const location = useLocation();
+    const hideNav = ["/login", "/signup"];
+    const shouldNav = hideNav.includes(location.pathname);
     return (
         <div>
-            <Nav/>
+            {!shouldNav && <Nav/>}
             <Outlet/>
             <Footer/>
         </div>
