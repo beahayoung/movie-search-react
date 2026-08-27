@@ -8,50 +8,40 @@ const Login = () => {
     const [password, setPassword] = useState("");
     const [idfocused, setidFocused] = useState(false);
     const [passfocused, setpassFocused] = useState(false);
-    const [hasValue, sethasValue] = useState(false);
-    const [hasValuepass, sethasValuepass] = useState(false);
     const [ishide, sethide] = useState(false);
+    const [keep, setkeep] = useState(false);
+
+    const idHasLabel = idfocused || email.length > 0;
+    const passHasLabel = passfocused || password.length > 0;
+
     const handleSubmit = (e) => {
         e.preventDefault();
     }
-    const handleclearInputId = (e) => {
-        e.preventDefault()
+    const handleclearInputId = () => {
         setEmail("");
-        sethasValue(false);
     }
-    const handleclearInputpass = (e) => {
-        e.preventDefault();
+    const handleclearInputpass = () => {
         setPassword("");
-        sethasValuepass(false);
     }
-    const passhideoff = (e) => {
-        e.preventDefault();
+
+    const passhideoff = () => {
         sethide(!ishide);
     }
     const handlefocus = (e) => {
         
         if(e.target.id == "email") {
             setidFocused(true)
-            sethasValue(true);
         } else {
             setpassFocused(true)
-            sethasValuepass(true);
         }
         
     }
     const handleBlurCheck = (e) => {
-        if(e.target.value.length > 0) {
-            if(e.target.id == "email") {
-                setidFocused(true)
-            } else {
-                setpassFocused(true)
-            }
+            console.log("blur 발생:", e.target.id, "value:", e.target.value, "length:", e.target.value.length);
+        if(e.target.id == "email") {
+            setidFocused(false)
         } else {
-            if(e.target.id == "email") {
-                setidFocused(false)
-            } else {
-                setpassFocused(false)
-            }
+            setpassFocused(false)
         }
     }
     return (
@@ -64,7 +54,7 @@ const Login = () => {
             <div className='login-card'>
 
                 <form className='login-form' onSubmit={handleSubmit}>
-                    <div className={`input-group id ${idfocused ? "focus" : ""} ${hasValue ? "has_input":""}`}>
+                    <div className={`input-group id ${idfocused ? "focus" : ""} ${idHasLabel ? "has_input":""}`}>
                         <label htmlFor='email'>이메일 주소</label>
                         <div className='input_wrap'>
                             <input id='email' type='email' className='intext' onFocus={handlefocus} onBlur={handleBlurCheck} value={email} onChange={(e) => setEmail(e.target.value)} required />
@@ -75,10 +65,10 @@ const Login = () => {
                             }
                         </div>
                     </div>
-                    <div className={`input-group pass ${passfocused ? "focus" : ""} ${hasValuepass ? "has_input":""}`}>
+                    <div className={`input-group pass ${passfocused ? "focus" : ""} ${passHasLabel ? "has_input":""}`}>
                         <label htmlFor='password'>비밀번호</label>
                         <div className='input_wrap'>
-                            <input id='password' type={`${ishide ? "text":"password"}`} className='intext' value={password} onFocus={handlefocus} onBlur={handleBlurCheck} onChange={(e) => setPassword(e.target.value)} required />
+                            <input id='password' type={ishide ? "text":"password"} className='intext' value={password} onFocus={handlefocus} onBlur={handleBlurCheck} onChange={(e) => setPassword(e.target.value)} required />
                             {password.length > 0 &&
                                 <>
                                     <button type='button' className='pass_hide_off' onClick={passhideoff} onMouseDown={(e) => e.preventDefault()}>
@@ -95,8 +85,8 @@ const Login = () => {
                         </div>
                     </div>
                     <div className='login-check'>
-                        <label htmlFor='login_check'>로그인 상태 유지</label>
-                        <input type='checkbox' id='login_check' />
+                        <input type='checkbox' id='login_check' aria-checked={keep} value={keep? "on" : "off"} checked={keep} onChange={(e)=> setkeep(e.target.checked)}/>
+                        <label htmlFor='login_check' className='check_label'>로그인 상태 유지</label>
                     </div>
                     <button type='submit' className='login-submit'>로그인</button>
                 </form>
