@@ -62,7 +62,7 @@ const Banner = () => {
         <div className='banner__wrap'>
            <Swiper modules={[Autoplay, Pagination, Navigation]} slidesPerView={"auto"}  loop={true} autoplay={{delay:3000}} onSlideChange={(swiper)=> setActiveIndex(swiper.realIndex)} slidesPerView={1.1} pagination={{ clickable: true }} centeredSlides={true} spaceBetween={25} navigation>
               {movies.map((movie)=> (
-                <SwiperSlide key={movie.id} className='banner' style={{backgroundImage:`url("https://image.tmdb.org/t/p/original${movie.backdrop_path}")`}}>
+                <SwiperSlide key={movie.id} className='banner' style={{background:`url("https://image.tmdb.org/t/p/original${movie.backdrop_path}")no-repeat center/100%`}}>
                    <div className='banner__contents'>
                        <h2 className='banner__title'>{movie.title || movie.name || movie.original_name}</h2>
                        <h3 className='banner__description'>{movie.overview}</h3>

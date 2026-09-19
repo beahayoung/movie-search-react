@@ -5,6 +5,7 @@ import Detalpage from "./pages/DetalPage/Detalpage";
 import Searchpage from "./pages/SearchPage/Searchpage";
 import Login from "./components/auth/Login";
 import Signup from "./components/auth/Signup";
+import Term from "./components/auth/Term";
 
 
 const App = () => {
@@ -16,6 +17,7 @@ const App = () => {
          <Route path=":movieId" element={<Detalpage/>}/>
          <Route path="search" element={<Searchpage/>}/>
          <Route path="login" element={<Login/>}/>
+         <Route path="term" element={<Term/>}/>
          <Route path="signup" element={<Signup/>}/>
         </Route>
       </Routes>

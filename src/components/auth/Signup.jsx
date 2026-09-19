@@ -14,18 +14,20 @@ const Signup = () => {
     }
     return (
         <div className='auth-page'>
+                <div className='vort_logo'>
+                <Link to="/">
+                    <FontAwesomeIcon icon={faBolt} style={{ color: '#7c5cea' }} />VOLT
+                </Link>
+            </div>
             <div className='auth-card'>
-                <div className='title-wrap'>
-                    <h1 className='auth-title'>
-                        <Link to="/">
-                            <FontAwesomeIcon icon={faBolt} style={{ color: '#7c5cea' }} />VOLT
-                        </Link></h1>
-                </div>
-
+                <h2 className='auth-tit'>닉네임 입력해주세요.</h2>
                 <form className='auth-form' onSubmit={handleSubmit}>
                     <div className='input-group'>
                         <label htmlFor='nickname'>닉네임</label>
+                        <div className='input_wrap'>
                         <input id='nickname' type='text' placeholder='표시될 이름' value={nickname} onChange={(e) => setNickname(e.target.value)} required />
+                        <p className='alert'>8자 이내로 입력해주세요.</p>
+                        </div>
                     </div>
                     <div className='input-group'>
                         <label htmlFor='email'>이메일</label>
@@ -45,9 +47,8 @@ const Signup = () => {
                         <button type='submit' className='auth-submit'>가입 하기</button>
                     </div>
                 </form>
-                <p className='auth-switch'>이미 계정이 있으신가요? <Link to='/login'>로그인</Link></p>
             </div>
-
+                <p className='auth-switch'>이미 계정이 있으신가요? <Link to='/login'>로그인</Link></p>
         </div>
     )
 };

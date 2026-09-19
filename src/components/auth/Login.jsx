@@ -93,7 +93,7 @@ const Login = () => {
             </div>
             <ul className='search_list'>
                 <li>비밀번호 찾기</li>
-                <li><Link to='/signup'>회원가입</Link></li>
+                <li><Link to='/term'>회원가입</Link></li>
             </ul>
 
         </div>
