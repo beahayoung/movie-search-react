@@ -376,6 +376,11 @@ body {
   }
 }
 .auth-page {
+  .auth-switch {
+    text-align: center;
+    color: #fff;
+    margin:10px 0px 30px 0px;
+  }
   .vort_logo {
     display: block;
     font-size: 3rem;
@@ -391,8 +396,9 @@ body {
     .auth-tit {
       color: #fff;
       font-weight: bold;
+      padding-left: 0px;
     }
-            min-height: 460px;
+            // min-height: 460px;
       padding: 49px;
     width: 520px;
     margin: 0 auto;
@@ -400,6 +406,107 @@ body {
 
     border: 1px solid rgba($color: #fff, $alpha: 0.1);
     box-shadow: 0 2px 16px rgba(0, 0, 0, 0.06);
+    .auth-form {
+     max-height: 100%;
+    min-height: 400px;
+      position: relative;
+      display: flex;
+      flex-direction: column-reverse;
+          justify-content: flex-end;
+      .input-group {
+        &.completed {
+          .input_name {
+            display: block;
+          }
+          .alert {
+            display: none;
+          }
+        }
+        margin-top: 20px;
+
+        .input_clear_btn {
+          position: absolute;
+          display: none;
+          color: #fff;
+          right: 0px;
+          cursor: pointer;
+          top: 50%;
+          transform:translateY(-50%);
+          svg {
+            width: 15px;
+            height: 15px;
+          }
+        }
+      }
+      .auth-submit {
+        &.next {
+          &:disabled {
+            background: var(--color-white-opace);
+            color: var(--color-white-opace2);
+            pointer-events: none;
+          }
+        }
+      }
+      .input_name {
+        display: none;
+
+        font-size: .875rem;
+        margin-bottom: 3px;
+        vertical-align: top;
+        color: #fff;
+      }
+      .input_wrap {
+        position: relative;
+        &:focus-within {
+          .input_clear_btn {
+            display: block;
+          }
+          input {
+            border-bottom: 1px solid var(--color-primary-dark);
+          }
+        }
+        input {
+          background: transparent;
+          border: none;
+          color: #fff;
+          transition: 0.5s;
+          width: 100%;
+    margin-right: 4px;
+    padding: 4px 0;
+    font-size: 1.125rem;
+    line-height: 1.5rem;
+    border-bottom: 1px solid #FFFFFF14;
+    &:focus {
+      outline: none;
+    }
+    &:-internal-autofill-selected {
+      background-color: transparent!important;
+
+    }
+
+        }
+      }
+      .alert {
+                color: var(--color-gray);
+      font-size:.875rem;
+      margin-top: 10px;
+      }
+      .button_wrap {
+        margin-top: auto;
+        position: absolute;
+        width: 100%;
+        bottom: 0px;
+        button {
+          width: 100%;
+          height: 48px;
+          background: var(--color-primary-dark);
+             font-size: 1rem;
+             color: #fff;
+             font-weight: bold;
+             border-radius: 12px;
+        }
+      }
+    }
   }
 }
 .term_page {
