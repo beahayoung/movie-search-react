@@ -1,11 +1,11 @@
-import { useEffect } from 'react';
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
+import { watchAuthState } from '../firebase/config';
 import { Link, useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass, faXmark, faCircleXmark, faBolt } from '@fortawesome/free-solid-svg-icons';
 
 const Nav = () => {
-    
+    const [user, setUser] = useState(null);
     const [show, setShow] = useState(false);
     const [searchValue, setSearchValue] = useState("");
     const [searchKing, setSearchKing] = useState([]);
@@ -25,6 +25,13 @@ const Nav = () => {
         return ()=> {
             window.removeEventListener("scroll", handleScroll);
         }
+    },[])
+    useEffect(()=> {
+          const unsubscribe = watchAuthState((currentUser) => {
+            setUser(currentUser);
+            console.log(currentUser)
+        });
+        return () => unsubscribe(); // 컴포넌트 사라질 때 감시 중단
     },[])
     const handlesearch = (e) => {
         e.preventDefault();
@@ -83,7 +90,13 @@ const Nav = () => {
                         </ul>
                     </div>
                 </div>
-                <button type='button' className='login_btn' onClick={()=> navigate('/login')}>로그인</button>
+                {user ? (
+                    <div className='profile'>
+                        {user.displayName} 님
+                    </div>
+                    ):(
+                    <button type='button' className='login_btn' onClick={()=> navigate('/login')}>로그인</button>
+                    )}
             {/* <img src='https://occ-0-4796-988.1.nflxso.net/dnm/api/v6/K6hjPJd6cR6FpVELC5Pd6ovHRSk/AAAABbme8JMz4rEKFJhtzpOKWFJ_6qX-0y5wwWyYvBhWS0VKFLa289dZ5zvRBggmFVWVPL2AAYE8xevD4jjLZjWumNo.png?r=a41' alt='User logged' className='nav__avatar' /> */}
             </div>
         </nav>
