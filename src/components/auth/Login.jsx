@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { logIn } from '../../firebase/config';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBolt, faCircleXmark, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 
@@ -13,9 +14,15 @@ const Login = () => {
 
     const idHasLabel = idfocused || email.length > 0;
     const passHasLabel = passfocused || password.length > 0;
-
-    const handleSubmit = (e) => {
+    const navigate = useNavigate();
+    const handleSubmit = async (e) => {
         e.preventDefault();
+        try {
+        await logIn(email, password); // Login.jsx에 있는 state 이름 그대로
+        navigate('/');
+    } catch (error) {
+        console.log(error.code, error.message);
+    }
     }
     const handleclearInputId = () => {
         setEmail("");

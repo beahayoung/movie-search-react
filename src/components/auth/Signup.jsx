@@ -1,17 +1,30 @@
 import { useState, useRef, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { updateProfile } from 'firebase/auth';
+import { signUp } from '../../firebase/config';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBolt, faCircleXmark, faL } from '@fortawesome/free-solid-svg-icons';
 
 const Signup = () => {
     const inputRef = useRef(null);
-    
+    const navigate = useNavigate();
     const steps = [
         { name: "nickname", label: "닉네임", type: "text", placeholder: "닉네임", alert:"8자 이내로 입력해주세요.", maxLen:8},
         { name: "email", label: "이메일", type: "email", placeholder: "이메일", alert:"이메일 형식으로 입력해주세요.", maxLen:50},
         { name: "password", label: "비밀번호", type: "password", placeholder: "비밀번호 입력", alert:"8자 이내로 입력해주세요.", maxLen:8},
         { name: "confirmPassword", label: "비밀번호 확인", type: "password", placeholder: "비밀번호을 한 번 더 입력해주세요", alert:"비밀번호 같이 입력해주세요", maxLen:8},
     ]
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            const userCredential = await signUp(formData.email, formData.password);
+            await updateProfile(userCredential.user, { displayName: formData.nickname });
+            navigate('/'); // 가입 성공하면 이동할 페이지
+        } catch (error) {
+            console.log(error.code, error.message);
+            // 나중에 화면에 에러 메시지 보여줄 자리
+        }
+    };
     const [formData, setFormData] = useState({
         nickname: "",
         email: "",
@@ -46,7 +59,7 @@ const Signup = () => {
             </div>
             <div className='auth-card'>
                 <h2 className='auth-tit'>{steps[step].label} 입력해주세요.</h2>
-                <form className='auth-form' >
+                <form className='auth-form' onSubmit={handleSubmit}>
                     {
                         steps.slice(0, step + 1).map((item, index) => (
                             <div className={`input-group ${index<step?"completed":""}`} key={item.name}>
