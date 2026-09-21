@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from "styled-components";
+import logo from "../assets/image/API_LOGO.svg"
 
 const Footer = () => {
     return (
@@ -8,23 +9,23 @@ const Footer = () => {
                 <FooterLinkContainer>
                     <FooterLinkTitle>VOLT</FooterLinkTitle>
                     <FooterLinkContent>
-                        <FooterLink href="https://help.netflix.com/ko/node/412">
+                        <FooterLink href="javascript:void(0)">
                             VOLT 소개
                         </FooterLink>
-                        <FooterLink href="https://help.netflix.com/ko">
+                        <FooterLink href="javascript:void(0)">
                             고객 센터
                         </FooterLink>
-                        <FooterLink href="https://help.netflix.com/ko/">
+                        <FooterLink href="javascript:void(0)">
                             미디어 센터
                         </FooterLink>
-                        <FooterLink href="https://help.netflix.com/ko/">
+                        <FooterLink href="javascript:void(0)">
                             이용 약관
                         </FooterLink>
                     </FooterLinkContent>
                     <FooterDescContainer>
                         <FooterDescRights>
                             VOLT Rights Reserved.
-                        </FooterDescRights>
+                            <FooterLogo src={logo} alt='tmdb_logo' />                       </FooterDescRights>
                     </FooterDescContainer>
                 </FooterLinkContainer>
             </FooterContent>
@@ -33,7 +34,13 @@ const Footer = () => {
 };
 
 export default Footer;
-
+const FooterLogo = styled.img`
+ width:100px;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ margin:20px auto;
+`;
 const FooterContainer = styled.div`
   display: flex;
   justify-content: center;
