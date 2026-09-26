@@ -3,32 +3,33 @@ import { useParams } from 'react-router-dom';
 import axios from '../../api/axios';
 import styled from "styled-components";
 
-const Detalpage = () => {
+const Detalpage = ({ type }) => {
     const { movieId } = useParams();
     const [movie, setMovie] = useState({});
     useEffect(() => {
         const fetchgDate = async () => {
             const request = await axios.get(
-                `/movie/${movieId}`
+                `/${type}/${movieId}`
             )
             setMovie(request.data)
             console.log("backdrop_path:", request.data.backdrop_path)
+            console.log(request.data)
         }
         fetchgDate();
-    }, [movieId])
+    }, [type,movieId])
     return (
         <>
             {movie? (
                 <DetalSection>
                     <DetalimgWrap>
-                    <img src={movie.backdrop_path ? `https://image.tmdb.org/t/p/original/${movie.backdrop_path}` : "https://via.placeholder.com/500x280?text=No+Image"} alt='poster' className='detal__poster' />
+                    <DetalImg path={movie.backdrop_path} />
                     </DetalimgWrap>
                         <div className='detal__content'>
-                            <p className='detal__details'>
-                                <span className='detal__user_perc'>100% for you</span>
+                            <p className='detal__details' style={{display: "flex", justifyContent:"space-between", marginBottom:"15px"}}>
+                                <span className='detal__user_perc' >100% for you</span>
                                 {movie.release_date ? movie.release_date : movie.first_air_date}
                             </p>
-                            <h2 className='detal__title'>
+                            <h2 className='detal__title' style={{paddingLeft:"0px",color:"#7c5cea",fontSize:"2.5rem"}}>
                                 {movie.title ? movie.title : movie.name}
                             </h2>
                             <p className='detal__overview'>
@@ -48,11 +49,18 @@ const Detalpage = () => {
 };
 
 export default Detalpage;
-
+const DetalImg = styled.img.attrs(props => ({
+  src:props.path ? `https://image.tmdb.org/t/p/original${props.path}` : `https://placehold.co/500x280?text=No+Image`,
+  alt:'poster'
+}))`.detal__poster
+height:50vh;
+object-fit: cover;
+object-position: top center;
+width: 100%;`;
 const DetalSection = styled.section`
 position: relative;
 height:100%;
-`;
+margin-top:70px;`;
 const DetalimgWrap = styled.div`
 position: relative;
 top:0;

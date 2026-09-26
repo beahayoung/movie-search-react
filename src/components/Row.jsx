@@ -12,6 +12,7 @@ const Row = ({isLargeRow, title, id, fetchUrl}) => {
     const [movies, setMovies] = useState([]);
     const rowPosterRef = useRef(null);
     const [modalOpen, isModalopen] = useState(false);
+    const [isLiked, setIsLiked] = useState(false);
     const [movieSelected, setMovieSelected] = useState({});
 
 
